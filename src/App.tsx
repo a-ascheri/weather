@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   return (
     <div className="app-container">
-      <h1>Dashboard del Clima</h1>
+      <h1>FreeWeather</h1>
       <SearchWeather />
       <WeatherChart />
     </div>
