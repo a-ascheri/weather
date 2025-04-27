@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { getWeatherByCity } from "../services/weather";
+import { useAppContext } from "../context/AppContext";
 
 export default function SearchWeather() {
-  const [city, setCity] = useState("");
+  const { city, setCity } = useAppContext();
   const [weather, setWeather] = useState<any>(null);
   const [error, setError] = useState("");
 
