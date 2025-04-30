@@ -19,14 +19,47 @@ body {
 }
 
 .app-container {
-  width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
+  /* Dimensiones responsive */
+  width: clamp(280px, 90%, 480px); /* Mínimo 280px, ideal 90%, máximo 480px */
+  max-height: 90vh;
+  
+  /* Estilos visuales */
+  padding: clamp(1rem, 4vw, 2rem); /* Padding responsive (1rem-2rem) */
   background-color: var(--bg-color);
   color: var(--text-color);
-  border-radius: 1rem;
+  border-radius: clamp(0.75rem, 2vw, 1rem); /* Bordes responsive */
   border: 1px solid var(--accent-color);
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  
+  /* Centrado mágico */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* Scroll elegante */
+  overflow-y: auto;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--accent-color) #f1f1f1;
+  
+  /* Efecto de transición suave */
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Scroll para Chrome/Safari */
+.app-container::-webkit-scrollbar {
+  width: 8px;
+}
+.app-container::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 4px;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -45%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
 }
 
 .form-group {

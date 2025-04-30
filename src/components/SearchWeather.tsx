@@ -2,6 +2,8 @@ import { useState } from "react";
 import { getWeatherByCity } from "../services/weather";
 import { useAppContext } from "../context/AppContext";
 
+
+// 1 - componente que busca el clima
 export default function SearchWeather() {
   const { city, setCity } = useAppContext();
   const [weather, setWeather] = useState<any>(null);
@@ -45,3 +47,12 @@ export default function SearchWeather() {
     </div>
   );
 }
+
+/*
+export default function SearchWeather() {
+  const { city, setCity } = useAppContext();
+  const [weather, setWeather] = useState<any>(null);
+  const [error, setError] = useState("");
+es el componente que se encarga de buscar el clima
+y de mostrarlo en la aplicacion.
+*/

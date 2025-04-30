@@ -7,7 +7,31 @@
     <title>Vite + React + TS</title>
   </head>
   <body>
-    <div id="root"></div>
+    <!-- Mont DOM virtual -->
+    <div id="root"></div> 
+    <!-- Interpretacion como modulo JS --> 
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
+
+
+<!--
+<div id="root"></div>:
+Se monta el DOM virtual copia del real donde se renderiza la app.
+Ese div#root es donde React "inyecta" el DOM virtual 
+(espejo en memoria del DOM real).
+
+------------------------------------------
+<script type="module" src="/src/main.tsx"></script>:
+El script main.tsx es el archivo principal de tu app. 
+A partir de ahí arranca todo.
+El script que se va a incluir es el archivo main.tsx,
+que es el punto de entrada de la aplicación React.
+El atributo
+
+------------------------------------------
+type="module":
+Este atributo indica que el script que se va a incluir 
+debe ser tratado como un módulo JavaScript. Esto habilita 
+las funcionalidades de importación y exportación. 
+-->
