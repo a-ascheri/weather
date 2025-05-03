@@ -12,10 +12,10 @@ createRoot(document.getElementById('root')!).render(
 
 /*
 createRoot(document.getElementById('root')!).render(
-es la forma moderna de renderizar una aplicacion en react
-createRoot(...) es la forma moderna de iniciar React 18+.
-que es lo mismo que hacer ReactDOM.render( lo cual es la forma 
-antigua de renderizar una aplicacion en react para evitar problemas 
+Es la forma moderna de iniciar React 18+. y la forma moderna de 
+renderizar una aplicacion en react. 
+Es lo mismo que hacer ReactDOM.render lo cual es la forma 
+antigua de renderizar una aplicacion en react para evitar problemas
 de rendimiento y errores de renderizado.
 
 ------------------------------------------
@@ -25,8 +25,7 @@ en la aplicacion y no se renderiza en produccion.
 
 ------------------------------------------
 App es el componente principal de la aplicacion
-que contiene toda la logica y el diseño de la aplicacion.
-es el componente principal de la aplicacion
-que se renderiza en el contenedor root.
+que contiene toda la logica y el diseño de la aplicacion que se 
+renderiza en el contenedor root.
 Todo lo que está dentro de <App /> se inyecta en el #root del HTML.
 */

@@ -1,23 +1,28 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-//1 - propiedades del contexto
+//1 - AppContextProps - propiedades del contexto
 interface AppContextProps {
     city: string;
     setCity: (city: string) => void;
 }
 
-//2 - creacion del contexto
+//2 - AppContext - creacion del contexto
 const AppContext = createContext<AppContextProps | undefined>(undefined);
 
-//3 - propiedades del proveedor
+//3 - AppContextProviderProps - propiedades del proveedor del contexto
 interface AppContextProviderProps {
     children: ReactNode;
+    /* En este caso, solo especifica 
+    que el componente acepta una 
+    prop llamada children de tipo 
+    ReactNode (que puede ser cualquier 
+    elemento válido de React: strings, 
+    números, JSX, componentes, etc.).*/
 }
 
-//4 - creacion proveedor del contexto
+//4 - AppContextProvider - ES EL CENTRAL DE LA APLICACION - creacion del proveedor del contexto - 
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
     const [city, setCity] = useState<string>('');
-
     return (
         <AppContext.Provider value={{ city, setCity }}>
             {children}
@@ -25,7 +30,7 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     );
 };
 
-//5 - hook para utilizar el contexto
+//5 - useAppContext - hook para utilizar el contexto
 export const useAppContext = (): AppContextProps => {
     const context = useContext(AppContext);
     if (!context) {
@@ -37,21 +42,22 @@ export const useAppContext = (): AppContextProps => {
 /*
 1 - interface AppContextProps {
 es una interfaz que define las propiedades del contexto
-que se encarga de manejar el estado global de la aplicacion
-y de compartirlo entre los componentes.
 Define qué datos/funciones estarán disponibles en el contexto 
 (en este caso, city y su setter setCity).
 city: string;
 es una propiedad que se encarga de almacenar la ciudad
 que se va a buscar en la aplicacion. tipo string.
 setCity: (city: string) => void;
+es una funcion que se encarga de actualizar la ciudad
+que se va a buscar en la aplicacion.
+- setCity es una función que se usa para actualizar el estado de la ciudad.
+- Se define como una función que toma un string (la nueva ciudad) y no devuelve nada (void).
+- Se usa para actualizar el estado de la ciudad en el contexto.
 }
 
 ------------------------------------------
 2 - const AppContext = createContext<AppContextProps | undefined>(undefined);
 es la creacion del contexto de la aplicacion
-que se encarga de manejar el estado global de la aplicacion
-y de compartirlo entre los componentes.
 - AppContext es el "objeto contexto" que se usará para proveer y consumir los datos.
 - Se inicializa con undefined porque inicialmente no hay Provider 
 (y TypeScript obliga a manejar el caso undefined en el hook personalizado).

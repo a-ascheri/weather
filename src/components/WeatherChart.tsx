@@ -1,3 +1,4 @@
+import { useAppContext } from '../context/AppContext';
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
@@ -10,7 +11,6 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { useAppContext } from '../context/AppContext';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 

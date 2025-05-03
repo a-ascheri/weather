@@ -1,6 +1,6 @@
+import { useAppContext } from "../context/AppContext";
 import { useState } from "react";
 import { getWeatherByCity } from "../services/weather";
-import { useAppContext } from "../context/AppContext";
 
 
 // 1 - componente que busca el clima
