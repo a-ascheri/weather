@@ -76,7 +76,8 @@ const WeatherChart = () => {
   return (
     <div>
       <h2>Pronóstico del Clima</h2>
-      {chartData ? <Line data={chartData} /> : <p>No se pudieron cargar los datos.</p>}
+      {chartData ? <Line data={chartData} /> : <p></p>}
+      <p>FW® Todos los derechos reservados.</p>
     </div>
   );
 };

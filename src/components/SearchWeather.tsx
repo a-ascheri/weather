@@ -2,8 +2,51 @@ import { useAppContext } from "../context/AppContext";
 import { useState } from "react";
 import { getWeatherByCity } from "../services/weather";
 
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  InputBase,
+  IconButton,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
 
-// 1 - componente que busca el clima
+import { styled, alpha } from "@mui/material/styles";
+
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: theme.spacing(1),
+  marginRight: theme.spacing(1),
+  flexGrow: 1,
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  width: "100%",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 2),
+    transition: theme.transitions.create("width"),
+    width: "100%",
+  },
+}));
+
+const PlainIconButton = styled(IconButton)(() => ({
+  color: "inherit",
+  backgroundColor: "transparent",
+  "&:hover": {
+    backgroundColor: "transparent",
+  },
+  "&:focus": {
+    outline: "none",
+  },
+}));
+
 export default function SearchWeather() {
   const { city, setCity } = useAppContext();
   const [weather, setWeather] = useState<any>(null);
@@ -15,44 +58,50 @@ export default function SearchWeather() {
       setWeather(data);
       setError("");
     } catch (err) {
-      setError("No se pudo obtener el clima.");
+      setError("No se registró consulta.");
       setWeather(null);
     }
   };
 
-  return (
-    <div>
-      <h2>Buscar clima</h2>
-      <input
-        type="text"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        placeholder="Ej: Buenos Aires"
-      />
-      <button onClick={handleSearch}>Buscar</button>
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <WbSunnyIcon sx={{ mr: 1 }} />
+          <Search>
+            <StyledInputBase
+              placeholder="Buscar ciudad..."
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              onKeyDown={handleKeyDown}
+              inputProps={{ "aria-label": "buscar ciudad" }}
+            />
+          </Search>
+          <PlainIconButton onClick={handleSearch}>
+            <SearchIcon />
+          </PlainIconButton>
+        </Toolbar>
+      </AppBar>
+
+      {error && <p style={{ color: "red", margin: "1rem" }}>{error}</p>}
 
       {weather && (
-        <div>
-          <h3>{weather.name}</h3>
+        <Box sx={{ p: 2 }}>
+          <h2>{weather.name}</h2>
           <p>{weather.weather[0].description}</p>
           <p>{weather.main.temp} °C</p>
           <img
             src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
             alt="Icono del clima"
           />
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }
-
-/*
-export default function SearchWeather() {
-  const { city, setCity } = useAppContext();
-  const [weather, setWeather] = useState<any>(null);
-  const [error, setError] = useState("");
-es el componente que se encarga de buscar el clima
-y de mostrarlo en la aplicacion.
-*/

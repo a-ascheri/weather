@@ -132,3 +132,20 @@ img {
     margin-left: 0;
   }
 }
+
+
+.MuiAppBar-root {
+  background-color: var(--input-bg) !important;
+  color: var(--text-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.MuiInputBase-root {
+  color: var(--text-color);
+}
+
+.MuiIconButton-root {
+  color: var(--text-color);
+}
+
