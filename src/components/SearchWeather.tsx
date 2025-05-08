@@ -1,7 +1,6 @@
 import { useAppContext } from "../context/AppContext";
 import { useState } from "react";
 import { getWeatherByCity } from "../services/weather";
-
 import {
   AppBar,
   Box,
@@ -10,8 +9,7 @@ import {
   IconButton,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
-
+import LocationCityIcon from "@mui/icons-material/LocationCity";
 import { styled, alpha } from "@mui/material/styles";
 
 const Search = styled("div")(({ theme }) => ({
@@ -42,9 +40,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
-
-
 
 const PlainIconButton = styled(IconButton)(() => ({
   color: "inherit",
@@ -82,28 +77,41 @@ export default function SearchWeather() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <WbSunnyIcon sx={{ mr: 1 }} />
-          <Search>
-            <PlainIconButton
-              onClick={handleSearch}
-              sx={{
-                position: "absolute",
-                left: 4,
-                padding: "6px",
-                zIndex: 1,
-              }}
-            >
-              <SearchIcon />
-            </PlainIconButton>
-            <StyledInputBase
-              placeholder="Buscar ciudad"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              onKeyDown={handleKeyDown}
-              inputProps={{ "aria-label": "buscar ciudad" }}
-            />
-          </Search>
+        <Toolbar sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          {/* Sol fijo a la izquierda */}
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <LocationCityIcon />
+          </Box>
+
+
+          {/* Campo centrado */}
+          <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
+            <Search>
+              <PlainIconButton
+                onClick={handleSearch}
+                sx={{
+                  position: "absolute",
+                  left: 8,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  padding: "6px",
+                  zIndex: 1,
+                  pointerEvents: "none", // evita vibraciones al foco
+                }}
+              >
+                <SearchIcon />
+              </PlainIconButton>
+              <StyledInputBase
+                placeholder="Buscar ciudad"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                onKeyDown={handleKeyDown}
+                inputProps={{ "aria-label": "buscar ciudad" }}
+              />
+            </Search>
+          </Box>
+          {/* Caja vacía para balancear el layout */}
+          <Box sx={{ width: "40px" }} />
         </Toolbar>
       </AppBar>
 

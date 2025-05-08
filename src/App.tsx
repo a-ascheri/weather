@@ -1,6 +1,8 @@
 import { AppContextProvider } from "./context/AppContext";
 import SearchWeather from "./components/SearchWeather";
 import WeatherChart from './components/WeatherChart';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import { Box } from '@mui/material';
 import "./App.css";
 
 
@@ -9,13 +11,17 @@ function App() {
   return (
     <AppContextProvider>
       <div className="app-container">
-        <h1>FreeWeather</h1>
+        <Box className="app-header">
+          <h1>FreeWeather</h1>
+          <WbSunnyIcon className="weather-icon" />
+        </Box>
         <SearchWeather />
         <WeatherChart />
       </div>
     </AppContextProvider>
   );
 }
+
 
 export default App;
 

@@ -149,3 +149,21 @@ img {
   color: var(--text-color);
 }
 
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espacio entre el icono y el texto */
+  margin-bottom: 1rem;
+}
+
+.weather-icon {
+  font-size: 2rem !important;; /* Tamaño del icono */
+  color: var(--accent-color); /* Color desde tus variables */
+  transform: translateY(2px); /* Ajuste fino vertical (opcional) */
+  transition: transform 0.2s ease, filter 0.3s ease;
+}
+
+.weather-icon:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 6px var(--accent-color));
+}
