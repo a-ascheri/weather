@@ -21,20 +21,30 @@ const Search = styled("div")(({ theme }) => ({
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  marginLeft: theme.spacing(1),
-  marginRight: theme.spacing(1),
-  flexGrow: 1,
+  display: "flex",
+  alignItems: "center",
+  transition: theme.transitions.create("width"),
+  width: "auto",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
-  width: "100%",
   "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 2),
-    transition: theme.transitions.create("width"),
-    width: "100%",
+    padding: theme.spacing(1, 1, 1, 5), // más padding izquierdo para el ícono
+    width: "16ch",
+    transition: theme.transitions.create(["width", "background-color"], {
+      duration: theme.transitions.duration.shorter,
+    }),
+    [theme.breakpoints.up("sm")]: {
+      "&:focus": {
+        width: "20ch",
+      },
+    },
   },
 }));
+
+
+
 
 const PlainIconButton = styled(IconButton)(() => ({
   color: "inherit",
@@ -75,17 +85,25 @@ export default function SearchWeather() {
         <Toolbar sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <WbSunnyIcon sx={{ mr: 1 }} />
           <Search>
+            <PlainIconButton
+              onClick={handleSearch}
+              sx={{
+                position: "absolute",
+                left: 4,
+                padding: "6px",
+                zIndex: 1,
+              }}
+            >
+              <SearchIcon />
+            </PlainIconButton>
             <StyledInputBase
-              placeholder="Buscar ciudad..."
+              placeholder="Buscar ciudad"
               value={city}
               onChange={(e) => setCity(e.target.value)}
               onKeyDown={handleKeyDown}
               inputProps={{ "aria-label": "buscar ciudad" }}
             />
           </Search>
-          <PlainIconButton onClick={handleSearch}>
-            <SearchIcon />
-          </PlainIconButton>
         </Toolbar>
       </AppBar>
 
