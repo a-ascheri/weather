@@ -2,8 +2,8 @@
   // Variables locales al componente
   --background-color: #1c1c1c;
   --text-color: #f8f8f8;
-  --border-color: #a45be7d2;
-  --accent-color: #734eed;
+  --border-color: #5be7a3d2;
+  --accent-color: #a893ea;
   --input-bg: #2c2c2c;
   --input-border: #9656e9;
   --placeholder-color: #d0c8e8;
@@ -24,9 +24,11 @@
     gap: 1rem;
   }
 
-  &__icon {
+  &__icon, &__search-button {
     color: var(--accent-color);
     font-size: 2rem;
+    flex-shrink: 0;
+    margin-right: 0.75rem;
   }
 
   &__input-wrapper {
@@ -36,7 +38,7 @@
     border: 1px solid var(--input-border);
     border-radius: 0.5rem;
     padding: 0 1rem;
-    width: 135px;
+    width: 140px;
     transition: width 0.3s ease, box-shadow 0.2s ease;
 
     &:focus-within {
@@ -46,7 +48,7 @@
     }
   }
 
-  &__input {
+    &__input {
     width: 100%;
     padding: 0.6rem 1rem;
     border: none;
@@ -66,12 +68,20 @@
   }
 
   &__search-button {
-    color: var(--accent-color);
+    margin-left: 0.3rem;
     padding: 0.5rem;
+  
+    svg {
+      color: var(--accent-color);
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
+  
+
 
   &__error {
-    color: red;
+    color: rgb(238, 158, 78);
     margin-top: 1rem;
     text-align: center;
   }
