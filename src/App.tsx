@@ -3,7 +3,7 @@ import SearchWeather from "./components/SearchWeather";
 import WeatherChart from './components/WeatherChart';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import { Box } from '@mui/material';
-import "./App.css";
+import "./styles/App.scss";
 
 
 // funcion principal llamada desde main.tsx por App

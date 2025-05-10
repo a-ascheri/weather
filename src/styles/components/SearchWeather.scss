@@ -1,0 +1,95 @@
+.search-weather {
+  // Variables locales al componente
+  --background-color: #1c1c1c;
+  --text-color: #f8f8f8;
+  --border-color: #a45be7d2;
+  --accent-color: #734eed;
+  --input-bg: #2c2c2c;
+  --input-border: #9656e9;
+  --placeholder-color: #d0c8e8;
+
+  padding: 1rem;
+
+  &__appbar {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    box-shadow: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  &__toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__icon {
+    color: var(--accent-color);
+    font-size: 2rem;
+  }
+
+  &__input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 0.5rem;
+    padding: 0 1rem;
+    width: 135px;
+    transition: width 0.3s ease, box-shadow 0.2s ease;
+
+    &:focus-within {
+      width: 200px;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 2px rgba(195, 214, 226, 0.2);
+    }
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 1rem;
+
+    // Estilos para el input interno de MUI
+    input {
+      color: var(--text-color);
+    }
+
+    input::placeholder {
+      color: var(--placeholder-color);
+      opacity: 1;
+    }
+  }
+
+  &__search-button {
+    color: var(--accent-color);
+    padding: 0.5rem;
+  }
+
+  &__error {
+    color: red;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  &__result {
+    margin-top: 2rem;
+    text-align: center;
+
+    h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin: 0.25rem 0;
+    }
+
+    img {
+      margin-top: 0.5rem;
+    }
+  }
+}

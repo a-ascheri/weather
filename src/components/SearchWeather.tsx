@@ -10,47 +10,7 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
-import { styled, alpha } from "@mui/material/styles";
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  display: "flex",
-  alignItems: "center",
-  transition: theme.transitions.create("width"),
-  width: "auto",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 5), // más padding izquierdo para el ícono
-    width: "16ch",
-    transition: theme.transitions.create(["width", "background-color"], {
-      duration: theme.transitions.duration.shorter,
-    }),
-    [theme.breakpoints.up("sm")]: {
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));
-
-const PlainIconButton = styled(IconButton)(() => ({
-  color: "inherit",
-  backgroundColor: "transparent",
-  "&:hover": {
-    backgroundColor: "transparent",
-  },
-  "&:focus": {
-    outline: "none",
-  },
-}));
+import "../styles/components/SearchWeather.scss";
 
 export default function SearchWeather() {
   const { city, setCity } = useAppContext();
@@ -75,50 +35,33 @@ export default function SearchWeather() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          {/* Sol fijo a la izquierda */}
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <LocationCityIcon />
+    <Box className="search-weather">
+      <AppBar position="static" className="search-weather__appbar">
+        <Toolbar className="search-weather__toolbar">
+          <LocationCityIcon className="search-weather__icon" />
+          <Box className="search-weather__input-wrapper">
+            <InputBase
+              className="search-weather__input"
+              placeholder="Buscar ciudad"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              onKeyDown={handleKeyDown}
+              inputProps={{ "aria-label": "buscar ciudad" }}
+            />
           </Box>
-
-
-          {/* Campo centrado */}
-          <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
-            <Search>
-              <PlainIconButton
-                onClick={handleSearch}
-                sx={{
-                  position: "absolute",
-                  left: 8,
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  padding: "6px",
-                  zIndex: 1,
-                  pointerEvents: "none", // evita vibraciones al foco
-                }}
-              >
-                <SearchIcon />
-              </PlainIconButton>
-              <StyledInputBase
-                placeholder="Buscar ciudad"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                onKeyDown={handleKeyDown}
-                inputProps={{ "aria-label": "buscar ciudad" }}
-              />
-            </Search>
-          </Box>
-          {/* Caja vacía para balancear el layout */}
-          <Box sx={{ width: "40px" }} />
+          <IconButton
+            onClick={handleSearch}
+            className="search-weather__search-button"
+          >
+            <SearchIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
 
-      {error && <p style={{ color: "red", margin: "1rem" }}>{error}</p>}
+      {error && <p className="search-weather__error">{error}</p>}
 
       {weather && (
-        <Box sx={{ p: 2 }}>
+        <div className="search-weather__result">
           <h2>{weather.name}</h2>
           <p>{weather.weather[0].description}</p>
           <p>{weather.main.temp} °C</p>
@@ -126,7 +69,7 @@ export default function SearchWeather() {
             src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
             alt="Icono del clima"
           />
-        </Box>
+        </div>
       )}
     </Box>
   );

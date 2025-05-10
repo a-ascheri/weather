@@ -1,0 +1,21 @@
+src
+├── App.tsx
+├── assets
+│   └── react.svg
+├── components
+│   ├── SearchWeather.tsx
+│   └── WeatherChart.tsx
+├── context
+│   └── AppContext.tsx
+├── main.tsx
+├── services
+│   └── weather.ts
+├── styles
+│   ├── App.scss
+│   └── components
+│       └── SearchWeather.scss
+└── vite-env.d.ts
+public
+└── vite.svg
+
+8 directories, 11 files

@@ -1,14 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
 
-// Inicia React 18+ y renderiza la aplicacion en el contenedor root HTML
+// Inicia React 18+ y renderiza la aplicación en el contenedor root HTML
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
   </StrictMode>,
-)
+);
 
 /*
 createRoot(document.getElementById('root')!).render(
