@@ -1,6 +1,6 @@
-import { AppContextProvider } from "../context/AppContext";
-import SearchWeather from "../components/SearchWeather";
-import WeatherChart from '../components/WeatherChart';
+import { AppContextProvider } from "@context/AppContext";
+import SearchWeather from "@components/SearchWeather";
+import WeatherChart from '@components/WeatherChart';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import { Box } from '@mui/material';
 import "./styles.scss";

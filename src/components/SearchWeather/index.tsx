@@ -1,6 +1,6 @@
-import { useAppContext } from "../../context/AppContext";
+import { useAppContext } from "@context/AppContext";
 import { useState } from "react";
-import { getWeatherByCity } from "../../services/weather";
+import { getWeatherByCity } from "@services/weather";
 import {
   AppBar,
   Box,
