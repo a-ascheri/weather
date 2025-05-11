@@ -1,6 +1,6 @@
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "../../context/AppContext";
 import { useState } from "react";
-import { getWeatherByCity } from "../services/weather";
+import { getWeatherByCity } from "../../services/weather";
 import {
   AppBar,
   Box,
@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
-import "../styles/components/SearchWeather.scss";
+import "./styles.scss";
 
 export default function SearchWeather() {
   const { city, setCity } = useAppContext();
