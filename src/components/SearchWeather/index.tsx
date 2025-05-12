@@ -12,6 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import "./styles.scss";
 
+
 export default function SearchWeather() {
   const { city, setCity } = useAppContext();
   const [weather, setWeather] = useState<any>(null);

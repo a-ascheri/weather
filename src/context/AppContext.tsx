@@ -1,43 +1,42 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-//1 - AppContextProps - propiedades del contexto
+// 1 - AppContextProps - propiedades del contexto
 interface AppContextProps {
-    city: string;
-    setCity: (city: string) => void;
+  city: string;
+  setCity: (city: string) => void;
+  hasSearched: boolean;
+  setHasSearched: (value: boolean) => void;
 }
 
-//2 - AppContext - creacion del contexto
+// 2 - AppContext - creación del contexto
 const AppContext = createContext<AppContextProps | undefined>(undefined);
 
-//3 - AppContextProviderProps - propiedades del proveedor del contexto
+// 3 - AppContextProviderProps - propiedades del proveedor del contexto
 interface AppContextProviderProps {
-    children: ReactNode;
-    /* En este caso, solo especifica 
-    que el componente acepta una 
-    prop llamada children de tipo 
-    ReactNode (que puede ser cualquier 
-    elemento válido de React: strings, 
-    números, JSX, componentes, etc.).*/
+  children: ReactNode;
 }
 
-//4 - AppContextProvider - ES EL CENTRAL DE LA APLICACION - creacion del proveedor del contexto - 
+// 4 - AppContextProvider - proveedor del contexto
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
-    const [city, setCity] = useState<string>('');
-    return (
-        <AppContext.Provider value={{ city, setCity }}>
-            {children}
-        </AppContext.Provider>
-    );
+  const [city, setCity] = useState<string>('');
+  const [hasSearched, setHasSearched] = useState<boolean>(false); // <-- nuevo estado
+
+  return (
+    <AppContext.Provider value={{ city, setCity, hasSearched, setHasSearched }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 
-//5 - useAppContext - hook para utilizar el contexto
+// 5 - useAppContext - hook para usar el contexto
 export const useAppContext = (): AppContextProps => {
-    const context = useContext(AppContext);
-    if (!context) {
-        throw new Error('useAppContext must be used within an AppContextProvider');
-    }
-    return context;
+  const context = useContext(AppContext);
+  if (!context) {
+    throw new Error('useAppContext must be used within an AppContextProvider');
+  }
+  return context;
 };
+
 
 /*
 1 - interface AppContextProps {
