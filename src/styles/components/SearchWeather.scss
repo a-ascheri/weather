@@ -2,7 +2,7 @@
   // Variables locales al componente
   --background-color: #1c1c1c;
   --text-color: #f8f8f8;
-  --border-color: #5be7a3d2;
+  --border-color: #5be5e7d2;
   --accent-color: #a893ea;
   --input-bg: #2c2c2c;
   --input-border: #9656e9;
@@ -24,7 +24,8 @@
     gap: 1rem;
   }
 
-  &__icon, &__search-button {
+  &__icon,
+  &__search-button {
     color: var(--accent-color);
     font-size: 2rem;
     flex-shrink: 0;
@@ -48,7 +49,7 @@
     }
   }
 
-    &__input {
+  &__input {
     width: 100%;
     padding: 0.6rem 1rem;
     border: none;
@@ -68,17 +69,20 @@
   }
 
   &__search-button {
-    margin-left: 0.3rem;
+    margin-left: 0.75rem;
     padding: 0.5rem;
-  
+    transition: background-color 2s ease;
+
+    &:hover {
+      background-color: rgba(147, 234, 224, 0.1) !important; // color de hover personalizado
+    }
+
     svg {
       color: var(--accent-color);
       width: 1.5rem;
       height: 1.5rem;
     }
   }
-  
-
 
   &__error {
     color: rgb(238, 158, 78);
