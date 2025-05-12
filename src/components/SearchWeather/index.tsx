@@ -12,22 +12,37 @@ import SearchIcon from "@mui/icons-material/Search";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import "./styles.scss";
 
-
 export default function SearchWeather() {
-  const { city, setCity, setHasSearched } = useAppContext();
+  const {
+    city,
+    setCity,
+    setHasSearched,
+    setLastSearchedCity
+  } = useAppContext();
+
   const [weather, setWeather] = useState<any>(null);
   const [error, setError] = useState("");
 
   const handleSearch = async () => {
+    if (!city.trim()) {
+      setError("Por favor, ingrese una ciudad.");
+      setHasSearched(false); // <- oculta el gráfico
+      setLastSearchedCity(""); // <- resetea
+      setWeather(null);
+      return;
+    }
+
     try {
       const data = await getWeatherByCity(city);
-      setHasSearched(true);
-
       setWeather(data);
+      setHasSearched(true); // <- activa el gráfico
+      setLastSearchedCity(city); // <- guarda la ciudad confirmada
       setError("");
     } catch (err) {
-      setError("No se registró consulta.");
+      setError("No se encontró la ciudad.");
       setWeather(null);
+      setHasSearched(false);
+      setLastSearchedCity("");
     }
   };
 

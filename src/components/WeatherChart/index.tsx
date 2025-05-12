@@ -15,22 +15,19 @@ import {
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const WeatherChart = () => {
-  const { city, hasSearched } = useAppContext();
+  const { lastSearchedCity, hasSearched } = useAppContext();
   const [chartData, setChartData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Solo ejecuta si el usuario hizo una búsqueda
-    if (!hasSearched || !city) {
-      return;
-    }
+    if (!hasSearched || !lastSearchedCity) return;
 
     const fetchWeatherData = async () => {
       setLoading(true);
       try {
         const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`
+          `https://api.openweathermap.org/data/2.5/forecast?q=${lastSearchedCity}&units=metric&appid=${apiKey}`
         );
         const data = await response.json();
 
@@ -42,9 +39,12 @@ const WeatherChart = () => {
         });
 
         const labels = filteredData.map((item: any) =>
-          new Date(item.dt * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+          new Date(item.dt * 1000).toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit'
+          })
         );
-        const temperatures = filteredData.map((item: any) => item.main.temp); // <- importante usar filteredData acá
+        const temperatures = filteredData.map((item: any) => item.main.temp);
 
         setChartData({
           labels,
@@ -66,7 +66,7 @@ const WeatherChart = () => {
     };
 
     fetchWeatherData();
-  }, [city, hasSearched]);
+  }, [lastSearchedCity, hasSearched]);
 
   if (!hasSearched) return null;
 

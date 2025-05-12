@@ -6,6 +6,8 @@ interface AppContextProps {
   setCity: (city: string) => void;
   hasSearched: boolean;
   setHasSearched: (value: boolean) => void;
+  lastSearchedCity: string;
+  setLastSearchedCity: (value: string) => void;
 }
 
 // 2 - AppContext - creación del contexto
@@ -19,13 +21,17 @@ interface AppContextProviderProps {
 // 4 - AppContextProvider - proveedor del contexto
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
   const [city, setCity] = useState<string>('');
-  const [hasSearched, setHasSearched] = useState<boolean>(false); // <-- nuevo estado
+const [hasSearched, setHasSearched] = useState<boolean>(false);
+const [lastSearchedCity, setLastSearchedCity] = useState<string>('');
 
-  return (
-    <AppContext.Provider value={{ city, setCity, hasSearched, setHasSearched }}>
-      {children}
-    </AppContext.Provider>
-  );
+return (
+  <AppContext.Provider
+    value={{ city, setCity, hasSearched, setHasSearched, lastSearchedCity, setLastSearchedCity }}
+  >
+    {children}
+  </AppContext.Provider>
+);
+
 };
 
 // 5 - useAppContext - hook para usar el contexto
