@@ -17,11 +17,11 @@ function App() {
         </Box>
         <SearchWeather />
         <WeatherChart />
-      </div>
+        <p>FW® Todos los derechos reservados.</p>
+      </div>  
     </AppContextProvider>
   );
 }
-
 
 export default App;
 

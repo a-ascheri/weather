@@ -14,13 +14,15 @@ import "./styles.scss";
 
 
 export default function SearchWeather() {
-  const { city, setCity } = useAppContext();
+  const { city, setCity, setHasSearched } = useAppContext();
   const [weather, setWeather] = useState<any>(null);
   const [error, setError] = useState("");
 
   const handleSearch = async () => {
     try {
       const data = await getWeatherByCity(city);
+      setHasSearched(true);
+
       setWeather(data);
       setError("");
     } catch (err) {
