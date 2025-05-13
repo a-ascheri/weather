@@ -49,7 +49,7 @@ body {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -45%);
+    transform: translate(-50%, -25%);
   }
 
   to {
@@ -73,9 +73,9 @@ body {
   transition: all 0.3s ease !important;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     transition: transform 0.2s ease, filter 0.3s ease;
-    filter: drop-shadow(0 0 6px #00e1ff); // <- azul celeste
+    filter: drop-shadow(0 0 6px #00ffeaa2); // <- azul celeste
   }
 }
 
