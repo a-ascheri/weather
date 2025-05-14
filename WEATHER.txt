@@ -1,21 +1,24 @@
 src
-├── App.tsx
+├── app
+│   ├── index.tsx
+│   └── styles.scss
 ├── assets
 │   └── react.svg
 ├── components
-│   ├── SearchWeather.tsx
-│   └── WeatherChart.tsx
+│   ├── SearchWeather
+│   │   ├── index.tsx
+│   │   └── styles.scss
+│   └── WeatherChart
+│       └── index.tsx
 ├── context
 │   └── AppContext.tsx
 ├── main.tsx
 ├── services
 │   └── weather.ts
-├── styles
-│   ├── App.scss
-│   └── components
-│       └── SearchWeather.scss
 └── vite-env.d.ts
 public
 └── vite.svg
 
-8 directories, 11 files
+9 directories, 11 files
+
+tree -n -L 3 src public > WEATHER.txt

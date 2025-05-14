@@ -10,6 +10,7 @@ export default defineConfig({
       '@context': path.resolve(__dirname, './src/context'),
       '@app': path.resolve(__dirname, './src/app'),
       '@styles': path.resolve(__dirname, './src/styles'),
+      '@services': path.resolve(__dirname, 'src/services'),
       // Agrega más alias según sea necesario
     },
   },
