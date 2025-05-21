@@ -22,3 +22,5 @@ public
 9 directories, 11 files
 
 tree -n -L 3 src public > WEATHER.txt
+
+Usar una libreria de rutas y tener mas de una pagina compartiendo el contexto, reactrouter ej.
